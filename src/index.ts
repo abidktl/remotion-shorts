@@ -1,4 +1,4 @@
 import { registerRoot } from "remotion";
-import { DataShortsRoot } from "./DataShorts";
+import { DataShortsRoot } from "./Root";
 
 registerRoot(DataShortsRoot);

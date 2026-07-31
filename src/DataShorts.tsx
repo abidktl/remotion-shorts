@@ -1,14 +1,13 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Composition,
   Sequence,
   interpolate,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 
-// ─── Data-driven: one template, any fact set ───
+// ─── Data-driven: one template, any repo/niche ───
 export type ShortData = {
   hook: string;
   hookSub: string;
@@ -20,19 +19,19 @@ export type ShortData = {
   bg3: string;
 };
 
-export const SOLAR_SHORT: ShortData = {
-  hook: "☀️ Solar Lagao",
-  hookSub: "PM Surya Ghar Yojana",
-  bg1: "#0b8a8a",
+export const AGENT_REACH_SHORT: ShortData = {
+  hook: "👁️ Agent-Reach",
+  hookSub: "One-click internet for AI agents",
+  bg1: "#7c3aed",
   rows: [
-    { label: "1 kW", value: "₹30,000" },
-    { label: "2 kW", value: "₹60,000" },
-    { label: "3 kW+", value: "₹78,000 CAP" },
+    { label: "15+ platforms", value: "1 command" },
+    { label: "Auto-fallback", value: "6/9 ready" },
+    { label: "MIT · Free", value: "0 cost" },
   ],
-  rowsBg: "#0f172a",
-  cta: "Compare Now →",
-  ctaSub: "Link in bio",
-  bg3: "#d8108c",
+  rowsBg: "#1e1b4b",
+  cta: "Give your Agent the internet",
+  ctaSub: "github.com/Panniantong/Agent-Reach",
+  bg3: "#db2777",
 };
 
 // ─── Scene 1: Hook ───
@@ -71,7 +70,7 @@ const Scene1: React.FC<{ d: ShortData }> = ({ d }) => {
           opacity,
           marginTop: 30,
           fontSize: 30,
-          color: "#ccfbf1",
+          color: "#ddd6fe",
           fontWeight: 500,
         }}
       >
@@ -94,7 +93,7 @@ const Scene2: React.FC<{ d: ShortData }> = ({ d }) => {
       }}
     >
       <div style={{ fontSize: 40, fontWeight: 800, color: "#fff", marginBottom: 36 }}>
-        Subsidy Breakdown
+        Why it wins
       </div>
       {d.rows.map((r, i) => {
         const o = interpolate(frame - delay - i * 8, [0, 15], [0, 1], {
@@ -110,13 +109,13 @@ const Scene2: React.FC<{ d: ShortData }> = ({ d }) => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              background: "#1e293b",
+              background: "#312e81",
               borderRadius: 14,
               padding: "18px 26px",
               marginBottom: 16,
             }}
           >
-            <span style={{ fontSize: 34, fontWeight: 700, color: "#e2e8f0" }}>
+            <span style={{ fontSize: 34, fontWeight: 700, color: "#e0e7ff" }}>
               {r.label}
             </span>
             <span style={{ fontSize: 38, fontWeight: 800, color: "#fbbf24" }}>
@@ -133,11 +132,11 @@ const Scene2: React.FC<{ d: ShortData }> = ({ d }) => {
           }),
           marginTop: 18,
           fontSize: 26,
-          color: "#94a3b8",
+          color: "#a5b4fc",
           textAlign: "center",
         }}
       >
-        Govt directly credits your bank account ✓
+        Backends come and go — you won't notice ✓
       </div>
     </AbsoluteFill>
   );
@@ -177,9 +176,9 @@ const Scene3: React.FC<{ d: ShortData }> = ({ d }) => {
           marginTop: 30,
           background: "#fbbf24",
           color: "#1a1a2e",
-          fontSize: 34,
+          fontSize: 30,
           fontWeight: 800,
-          padding: "16px 40px",
+          padding: "16px 36px",
           borderRadius: 50,
         }}
       >
@@ -191,7 +190,7 @@ const Scene3: React.FC<{ d: ShortData }> = ({ d }) => {
 
 // ─── Main: data-driven composition ───
 export const DataShorts: React.FC<{ data?: ShortData }> = ({ data }) => {
-  const d = data ?? SOLAR_SHORT;
+  const d = data ?? AGENT_REACH_SHORT;
   const { fps, durationInFrames } = useVideoConfig();
   return (
     <AbsoluteFill style={{ fontFamily: "system-ui, sans-serif" }}>
@@ -210,19 +209,3 @@ export const DataShorts: React.FC<{ data?: ShortData }> = ({ data }) => {
     </AbsoluteFill>
   );
 };
-
-// ─── Registry ───
-export const RemotionRoot: React.FC = () => {
-  return (
-    <Composition
-      id="DataShorts"
-      component={DataShorts}
-      durationInFrames={30 * 30}
-      fps={30}
-      width={1080}
-      height={1920}
-    />
-  );
-};
-
-export const DataShortsRoot = RemotionRoot;
